@@ -1,69 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Junky Agency | Marketing Digital que Vende</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Reset y estilos base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: #ffffff;
-            line-height: 1.6;
+            background-color: #000;
+            color: #fff;
             overflow-x: hidden;
         }
         
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
+        .gradient-text {
+            background: linear-gradient(90deg, #D2042D, #FF6EC7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
-        a {
-            text-decoration: none;
-            color: inherit;
+        .custom-shape {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
         
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .custom-shape-reverse {
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
         }
         
-        /* Colores */
-        :root {
-            --cherry: #990011;
-            --cherry-light: #CC0014;
-            --cherry-dark: #66000B;
-            --neon-pink: #FF2E63;
-            --dark-bg: #121212;
-            --black: #000000;
-            --white: #ffffff;
-            --gray: #888888;
-        }
-        
-        /* Animaciones Globales */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
         
         @keyframes pulse {
@@ -72,1728 +42,781 @@
             100% { transform: scale(1); }
         }
         
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Navegación */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(18, 18, 18, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(153, 0, 17, 0.3);
-            padding: 15px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            color: var(--white);
-        }
-        
-        .logo span {
-            color: var(--cherry);
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo:hover span {
-            transform: scale(1.1);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-        
-        .nav-link {
-            font-weight: 600;
-            position: relative;
-            transition: color 0.3s;
-        }
-        
-        .nav-link:hover {
-            color: var(--neon-pink);
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--neon-pink);
-            transition: width 0.3s;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(153, 0, 17, 0.2), transparent 50%);
-            z-index: -1;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .hero-text {
-            flex: 1;
-        }
-        
-        .hero-badge {
-            display: inline-block;
-            background-color: rgba(153, 0, 17, 0.2);
-            border: 1px solid rgba(153, 0, 17, 0.3);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease 0.2s forwards;
-            opacity: 0;
-        }
-        
-        .hero-title {
-            font-size: 56px;
-            line-height: 1.2;
-            margin-bottom: 24px;
-        }
-        
-        .hero-title-line1 {
-            display: block;
-            animation: slideInLeft 1s ease 0.4s forwards;
-            opacity: 0;
-        }
-        
-        .hero-title-line2 {
-            display: block;
-            animation: slideInLeft 1s ease 0.6s forwards;
-            opacity: 0;
-        }
-        
-        .hero-title-line3 {
-            display: block;
-            animation: slideInLeft 1s ease 0.8s forwards;
-            opacity: 0;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #FF2E63, #990011);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: gradientFlow 3s linear infinite;
-        }
-        
-        .hero-description {
-            font-size: 18px;
-            color: #CCCCCC;
-            margin-bottom: 32px;
-            animation: fadeIn 1s ease 1s forwards;
-            opacity: 0;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 32px;
-            animation: fadeIn 1s ease 1.2s forwards;
-            opacity: 0;
-        }
-        
-        .btn-primary {
-            background-color: var(--cherry);
-            color: var(--white);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--cherry-light);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(153, 0, 17, 0.3);
-        }
-        
-        .btn-primary span {
-            transition: transform 0.3s ease;
-        }
-        
-        .btn-primary:hover span {
-            transform: translateX(5px);
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--neon-pink);
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            border: 2px solid var(--neon-pink);
-            cursor: pointer;
-        }
-        
-        .btn-secondary:hover {
-            background-color: rgba(255, 46, 99, 0.1);
-            transform: translateY(-3px);
-        }
-        
-        .btn-secondary span {
-            transition: transform 0.3s ease;
-        }
-        
-        .btn-secondary:hover span {
-            transform: translateY(5px);
-        }
-        
-        .hero-stats {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            animation: fadeIn 1s ease 1.4s forwards;
-            opacity: 0;
-        }
-        
-        .stats-avatars {
-            display: flex;
-            margin-right: 8px;
-        }
-        
-        .stats-avatar {
-            width: 32px;
-            height: 32px;
-            background-color: rgba(153, 0, 17, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: -8px;
-            transition: transform 0.3s ease;
-        }
-        
-        .stats-avatar:hover {
-            transform: translateY(-5px);
-        }
-        
-        .stats-text {
-            color: #888888;
-            font-size: 14px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            animation: fadeIn 1s ease 0.5s forwards;
-            opacity: 0;
-        }
-        
-        .blob {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, var(--cherry), var(--neon-pink));
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: blob-animation 8s infinite ease-in-out, float 5s infinite ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 36px;
-            font-weight: 900;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(153, 0, 17, 0.5);
-        }
-        
-        .blob-content {
-            animation: pulse 3s infinite ease-in-out;
-        }
-        
-        .blob-emoji {
-            font-size: 48px;
-            margin-bottom: 8px;
-            display: inline-block;
-            animation: float 2s infinite;
-        }
-        
-        @keyframes blob-animation {
-            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-            50% { border-radius: 50% 60% 30% 60% / 30% 60% 70% 40%; }
-            75% { border-radius: 60% 40% 60% 30% / 70% 30% 50% 60%; }
-        }
-        
-        /* Marquee Banner */
-        .marquee-banner {
-            background-color: var(--cherry);
-            color: var(--white);
-            padding: 10px 0;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .marquee-content {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marquee 20s linear infinite;
-            padding-left: 100%;
-        }
-        
         @keyframes marquee {
-            0% { transform: translateX(0); }
+            0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
         
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background-color: var(--black);
-            position: relative;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(210, 4, 45, 0.7)); }
+            50% { filter: drop-shadow(0 0 20px rgba(210, 4, 45, 0.9)); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .float { animation: float 6s ease-in-out infinite; }
+        .pulse { animation: pulse 3s ease-in-out infinite; }
+        .spin { animation: spin 10s linear infinite; }
+        .bounce { animation: bounce 2s ease-in-out infinite; }
+        .glow { animation: glow 3s ease-in-out infinite; }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        .marquee-container {
             overflow: hidden;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
             position: relative;
-            z-index: 1;
+            width: 100%;
         }
         
-        .section-badge {
-            display: inline-block;
-            background-color: rgba(153, 0, 17, 0.2);
-            border: 1px solid rgba(153, 0, 17, 0.3);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 16px;
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 15s linear infinite;
         }
         
-        .section-title {
-            font-size: 40px;
-            margin-bottom: 16px;
-        }
-        
-        .section-description {
-            font-size: 18px;
-            color: #CCCCCC;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-            position: relative;
-            z-index: 1;
+        .marquee-item {
+            padding: 0 2rem;
         }
         
         .service-card {
-            background-color: rgba(18, 18, 18, 0.8);
-            border: 1px solid rgba(153, 0, 17, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            transition: all 0.5s;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .service-card.animated {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cherry), var(--neon-pink));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--neon-pink);
-            box-shadow: 0 10px 30px rgba(153, 0, 17, 0.2);
-        }
-        
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(153, 0, 17, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 24px;
-            transition: all 0.3s;
-        }
-        
-        .service-card:hover .service-icon {
-            background-color: var(--cherry);
-            transform: rotateY(360deg);
-        }
-        
-        .service-title {
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
-        
-        .service-description {
-            color: #CCCCCC;
-            margin-bottom: 20px;
-        }
-        
-        .service-link {
-            color: var(--neon-pink);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-        
-        .service-link span {
-            transition: transform 0.3s ease;
-        }
-        
-        .service-link:hover span {
-            transform: translateX(5px);
-        }
-        
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background-color: var(--dark-bg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .about-image {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-        
-        .about-image.animated {
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 0.8s ease;
-        }
-        
-        .about-image-container {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, #990011, #FF2E63);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 40px rgba(153, 0, 17, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .about-image-content {
-            text-align: center;
-            animation: pulse 3s infinite ease-in-out;
-        }
-        
-        .about-emoji {
-            font-size: 72px;
-            margin-bottom: 16px;
-            display: inline-block;
-            animation: float 2s infinite;
-        }
-        
-        .about-text {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        
-        .about-text.animated {
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 0.8s ease;
-        }
-        
-        .about-title {
-            font-size: 32px;
-            margin-bottom: 24px;
-        }
-        
-        .about-description {
-            color: #CCCCCC;
-            margin-bottom: 24px;
-        }
-        
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 32px;
-        }
-        
-        .feature {
-            background-color: rgba(18, 18, 18, 0.8);
-            border: 1px solid rgba(153, 0, 17, 0.3);
-            border-radius: 8px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s;
-        }
-        
-        .feature:hover {
-            border-color: var(--neon-pink);
-            box-shadow: 0 5px 15px rgba(153, 0, 17, 0.2);
-            transform: translateY(-5px);
-        }
-        
-        .feature-icon {
-            font-size: 24px;
-            transition: transform 0.3s ease;
-        }
-        
-        .feature:hover .feature-icon {
-            transform: scale(1.2);
-        }
-        
-        /* Testimonials Section */
-        .testimonials {
-            padding: 100px 0;
-            background-color: var(--black);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .testimonial-card {
-            background-color: rgba(18, 18, 18, 0.8);
-            border: 1px solid rgba(153, 0, 17, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            transition: all 0.5s;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .testimonial-card.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--neon-pink);
-            box-shadow: 0 10px 30px rgba(153, 0, 17, 0.2);
-        }
-        
-        .testimonial-stars {
-            color: gold;
-            font-size: 24px;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .star {
-            display: inline-block;
-            transition: transform 0.3s ease;
-        }
-        
-        .testimonial-card:hover .star {
-            animation: pulse 1s infinite;
-        }
-        
-        .testimonial-text {
-            color: #CCCCCC;
-            font-style: italic;
-            margin-bottom: 24px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(153, 0, 17, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: all 0.3s;
-        }
-        
-        .testimonial-card:hover .author-avatar {
-            background-color: var(--cherry);
-            transform: rotate(360deg);
-        }
-        
-        .author-info h4 {
-            font-weight: 700;
-        }
-        
-        .author-info p {
-            font-size: 14px;
-            color: #888888;
-        }
-        
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title animate-on-scroll">¿LISTO PARA <span style="text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 8px;">VENDER MÁS</span>?</h2>
-                <p class="cta-description animate-on-scroll">Deja de perder dinero en marketing que no funciona. Es hora de invertir en estrategias que realmente generan resultados.</p>
-                <a href="#contact" class="btn-white animate-on-scroll">
-                    Agenda una llamada gratuita
-                    <span>→</span>
-                </a>
-            </div>
-        </div>
-    </section>
-        
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background-color: var(--dark-bg);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact-content {
-            display: flex;
-            gap: 50px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .contact-form {
-            flex: 1;
-            background-color: rgba(18, 18, 18, 0.8);
-            border: 1px solid rgba(153, 0, 17, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            opacity: 0;
-            transform: translateX(-30px);
-        }
-        
-        .contact-form.animated {
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 0.8s ease;
-        }
-        
-        .form-group {
-            margin-bottom: 24px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .form-input {
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(153, 0, 17, 0.3);
-            border-radius: 8px;
-            padding: 12px 16px;
-            color: var(--white);
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 10px rgba(255, 46, 99, 0.3);
-        }
-        
-        textarea.form-input {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .contact-info {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        
-        .contact-info.animated {
-            opacity: 1;
-            transform: translateX(0);
-            transition: all 0.8s ease;
-        }
-        
-        .contact-title {
-            font-size: 32px;
-            margin-bottom: 24px;
-        }
-        
-        .contact-description {
-            color: #CCCCCC;
-            margin-bottom: 32px;
-        }
-        
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(153, 0, 17, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: all 0.3s;
-        }
-        
-        .contact-method:hover .contact-icon {
-            background-color: var(--cherry);
-            transform: rotate(360deg);
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: var(--black);
-            padding: 60px 0 30px;
-            border-top: 1px solid rgba(153, 0, 17, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 900;
-            margin-bottom: 16px;
-        }
-        
-        .footer-logo span {
-            color: var(--cherry);
-        }
-        
-        .footer-description {
-            color: #CCCCCC;
-            max-width: 300px;
-            margin-bottom: 24px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 16px;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(153, 0, 17, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-        
-        .social-link:hover {
-            transform: translateY(-3px);
-            background-color: var(--cherry);
-        }
-        
-        .footer-links h3 {
-            font-size: 18px;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .footer-links h3::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 2px;
-            bottom: -8px;
-            left: 0;
-            background: var(--cherry);
-        }
-        
-        .footer-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .footer-nav a {
-            color: #CCCCCC;
-            transition: all 0.3s;
-            position: relative;
-            display: inline-block;
-            padding-left: 15px;
-        }
-        
-        .footer-nav a::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            opacity: 0;
-            transition: all 0.3s;
-        }
-        
-        .footer-nav a:hover {
-            color: var(--neon-pink);
-            padding-left: 20px;
-        }
-        
-        .footer-nav a:hover::before {
-            opacity: 1;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #888888;
-            font-size: 14px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Scroll to top button */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--cherry);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 100;
-            box-shadow: 0 5px 15px rgba(153, 0, 17, 0.3);
-        }
-        
-        .scroll-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .scroll-top:hover {
-            background-color: var(--cherry-light);
-            transform: translateY(-5px);
-        }
-        
-        /* Responsive */
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 42px;
-            }
-            
-            .blob {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .about-content, .contact-content {
-                flex-direction: column;
-            }
-            
-            .about-image-container {
-                width: 300px;
-                height: 300px;
-                margin: 0 auto;
-            }
-            
-            .footer-content {
-                flex-wrap: wrap;
-                gap: 30px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: rgba(18, 18, 18, 0.95);
-                backdrop-filter: blur(10px);
-                padding: 20px;
-                flex-direction: column;
-                border-bottom: 1px solid rgba(153, 0, 17, 0.3);
-                z-index: 1000;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-content {
-                flex-direction: column;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-            }
-            
-            .services-grid, .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Animación de entrada */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-</head>
-<body>
-    <!-- Navegación -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <div class="logo">
-                <span>JUNKY</span> AGENCY
-            </div>
-            
-            <div class="nav-links">
-                <a href="#home" class="nav-link">Inicio</a>
-                <a href="#services" class="nav-link">Servicios</a>
-                <a href="#about" class="nav-link">Nosotros</a>
-                <a href="#testimonials" class="nav-link">Testimonios</a>
-                <a href="#contact" class="nav-link">Contacto</a>
-            </div>
-            
-            <button class="mobile-menu-btn">☰</button>
-        </div>
-    </nav>
-    
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-badge">🚀 SMMA BASADA EN RESULTADOS</div>
-                    <h1 class="hero-title">
-                        <span class="hero-title-line1">ADS QUE</span>
-                        <span class="hero-title-line2"><span class="gradient-text">VENDEN,</span></span>
-                        <span class="hero-title-line3">NO QUE DECORAN</span>
-                    </h1>
-                    <p class="hero-description">
-                        Somos la agencia SMMA que transforma tu presencia digital en ventas reales. 
-                        <strong style="color: #FF2E63;">Sin rodeos. Sin bullshit.</strong> 
-                        Solo resultados. 🚀
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#contact" class="btn-primary">
-                            Contáctanos
-                            <span>→</span>
-                        </a>
-                        <a href="#services" class="btn-secondary">
-                            Ver servicios
-                            <span>↓</span>
-                        </a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stats-avatars">
-                            <div class="stats-avatar">🔥</div>
-                            <div class="stats-avatar">💰</div>
-                            <div class="stats-avatar">🚀</div>
-                        </div>
-                        <span class="stats-text">+50 clientes satisfechos</span>
-                    </div>
-                </div>
-                
-                <div class="hero-image">
-                    <div class="blob">
-                        <div class="blob-content">
-                            <div class="blob-emoji">🚀</div>
-                            <div>JUNKY</div>
-                            <div style="font-size: 16px; font-weight: 400;">MARKETING DIGITAL</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Marquee Banner -->
-    <div class="marquee-banner">
-        <div class="marquee-content">
-            <span>🔥</span> CREAMOS ADS QUE VENDEN, NO QUE DECORAN <span>🔥</span> MARKETING DIGITAL QUE GENERA RESULTADOS <span>💰</span> ESTRATEGIAS DIGITALES QUE CONVIERTEN <span>🚀</span> JUNKY AGENCY - TU PARTNER DIGITAL <span>🔥</span> CREAMOS ADS QUE VENDEN, NO QUE DECORAN <span>🔥</span>
-        </div>
-    </div>
-    
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-badge">🔥 NUESTROS SERVICIOS</div>
-                <h2 class="section-title">SERVICIOS QUE <span style="color: #990011;">GENERAN RESULTADOS</span></h2>
-                <p class="section-description">Soluciones digitales que generan resultados reales y medibles para tu negocio.</p>
-            </div>
-            
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <span>📱</span>
-                    </div>
-                    <h3 class="service-title">Facebook Ads</h3>
-                    <p class="service-description">Campañas que convierten visitantes en clientes. Optimizamos cada centavo de tu inversión para maximizar el ROAS.</p>
-                    <a href="#" class="service-link">
-                        Saber más
-                        <span>→</span>
-                    </a>
-                </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <span>🔍</span>
-                    </div>
-                    <h3 class="service-title">Google Ads</h3>
-                    <p class="service-description">Posiciónate donde tus clientes te buscan. Campañas SEM que capturan intención de compra y generan leads calificados.</p>
-                    <a href="#" class="service-link">
-                        Saber más
-                        <span>→</span>
-                    </a>
-                </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <span>📊</span>
-                    </div>
-                    <h3 class="service-title">Estrategia Digital</h3>
-                    <p class="service-description">Planificación integral para tu presencia online. Definimos objetivos, canales y tácticas para alcanzar tus metas de negocio.</p>
-                    <a href="#" class="service-link">
-                        Saber más
-                        <span>→</span>
-                    </a>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <span>🔄</span>
-                    </div>
-                    <h3 class="service-title">Funnel Marketing</h3>
-                    <p class="service-description">Diseñamos embudos de conversión que guían a tus prospectos desde el primer contacto hasta la venta y fidelización.</p>
-                    <a href="#" class="service-link">
-                        Saber más
-                        <span>→</span>
-                    </a>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <span>📝</span>
-                    </div>
-                    <h3 class="service-title">Content Marketing</h3>
-                    <p class="service-description">Contenido que conecta, educa y convierte. Creamos piezas que resuenan con tu audiencia y fortalecen tu autoridad.</p>
-                    <a href="#" class="service-link">
-                        Saber más
-                        <span>→</span>
-                    </a>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
-                        <span>🎬</span>
-                    </div>
-                    <h3 class="service-title">TikTok & Reels</h3>
-                    <p class="service-description">Contenido viral que conecta con tu audiencia. Creamos y gestionamos campañas en plataformas de video corto.</p>
-                    <a href="#" class="service-link">
-                        Saber más
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 60px;" class="animate-on-scroll">
-                <a href="#contact" class="btn-primary" style="animation: pulse 2s infinite ease-in-out;">
-                    Quiero impulsar mi negocio
-                    <span>→</span>
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-badge">👋 CONÓCENOS</div>
-                <h2 class="section-title">QUIÉNES <span style="color: #990011;">SOMOS</span></h2>
-                <p class="section-description">Un equipo de marketeros digitales obsesionados con los resultados.</p>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-image animate-on-scroll">
-                    <div class="about-image-container">
-                        <div class="about-image-content">
-                            <div class="about-emoji">👾</div>
-                            <div style="font-size: 24px; font-weight: 900;">EQUIPO JUNKY</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="about-text animate-on-scroll">
-                    <h3 class="about-title">No somos tu agencia típica de marketing</h3>
-                    
-                    <p class="about-description">
-                        Nacimos en Melaque, Jalisco, pero nuestro impacto es global. Somos un equipo de marketeros digitales obsesionados con una cosa: <strong style="color: #FF2E63;">resultados medibles</strong>.
-                    </p>
-                    
-                    <p class="about-description">
-                        Olvidate de informes bonitos con métricas que no importan. Nos enfocamos en lo que realmente mueve la aguja: <strong style="color: #FF2E63;">ventas, leads y ROI</strong>.
-                    </p>
-                    
-                    <p class="about-description">
-                        Nuestro enfoque es directo y sin filtros, igual que nuestras estrategias. Si buscas una agencia que te diga lo que quieres oír, no somos para ti. Si quieres una que te diga lo que <strong style="color: #FF2E63;">necesitas escuchar</strong> para crecer, hablemos. 💰
-                    </p>
-                    
-                    <div class="about-features">
-                        <div class="feature">
-                            <span class="feature-icon">🎯</span>
-                            <span>Orientados a resultados</span>
-                        </div>
-                        
-                        <div class="feature">
-                            <span class="feature-icon">🔥</span>
-                            <span>Estrategias disruptivas</span>
-                        </div>
-                        
-                        <div class="feature">
-                            <span class="feature-icon">💡</span>
-                            <span>Creatividad sin límites</span>
-                        </div>
-                        
-                        <div class="feature">
-                            <span class="feature-icon">📊</span>
-                            <span>Data-driven</span>
-                        </div>
-                    </div>
-                    
-                    <a href="#contact" class="btn-primary">
-                        Trabajemos juntos
-                        <span>→</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <div class="section-badge">⭐ TESTIMONIOS</div>
-                <h2 class="section-title">LO QUE DICEN <span style="color: #990011;">DE NOSOTROS</span></h2>
-                <p class="section-description">Negocios que han transformado sus resultados con nuestras estrategias.</p>
-            </div>
-            
-            <div class="testimonials-grid">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card animate-on-scroll">
-                    <div class="testimonial-stars">
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                    </div>
-                    <p class="testimonial-text">"Junky Agency transformó por completo nuestro negocio online. Pasamos de gastar dinero en ads sin resultados a tener un ROAS de 4.2. Su enfoque directo y basado en datos es justo lo que necesitábamos."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">👨‍💼</div>
-                        <div class="author-info">
-                            <h4>Carlos Mendoza</h4>
-                            <p>CEO, Surf Shop Melaque</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card animate-on-scroll">
-                    <div class="testimonial-stars">
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                    </div>
-                    <p class="testimonial-text">"Lo que más valoro de Junky es su honestidad brutal. No te venden humo, te dicen exactamente lo que funciona y lo que no. En 3 meses, nuestras ventas online crecieron un 78%. Los números hablan por sí solos."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">👩‍💼</div>
-                        <div class="author-info">
-                            <h4>Laura Gutiérrez</h4>
-                            <p>Fundadora, Boutique Alma</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card animate-on-scroll">
-                    <div class="testimonial-stars">
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                        <span class="star">⭐</span>
-                    </div>
-                    <p class="testimonial-text">"Habíamos trabajado con 3 agencias antes y ninguna entregó resultados. Junky Agency no solo cumplió con nuestras expectativas, las superó. Su enfoque en TikTok Ads nos abrió un canal de adquisición que ahora representa el 40% de nuestras ventas."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">👨‍🍳</div>
-                        <div class="author-info">
-                            <h4>Miguel Ángel Rojas</h4>
-                            <p>Dueño, Restaurante El Pacífico</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-        /* CTA Section */
-        .cta {
-            padding: 100px 0;
-            background: linear-gradient(135deg, var(--cherry-dark), var(--cherry), var(--cherry-dark));
-            background-size: 400% 400%;
-            animation: gradientAnimation 10s ease infinite;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .cta::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
-            animation: rotateBackground 20s linear infinite;
-            z-index: 1;
+            background: radial-gradient(circle, rgba(210, 4, 45, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
         
-        @keyframes rotateBackground {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .service-card:hover::before {
+            opacity: 1;
         }
         
-        .cta-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(210, 4, 45, 0.3);
         }
         
-        .cta-title {
-            font-size: 56px;
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .cta-title-highlight {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .cta-title-highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: #fff;
-            border-radius: 4px;
-            animation: underlineGrow 1.5s ease-in-out infinite;
-        }
-        
-        @keyframes underlineGrow {
-            0%, 100% { transform: scaleX(0.7); opacity: 0.6; }
-            50% { transform: scaleX(1); opacity: 1; }
-        }
-        
-        .cta-description {
-            font-size: 22px;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        .cta-icons {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .cta-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .cta-icon-circle {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        .btn-hover {
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
         }
         
-        .cta-icon-circle:hover {
-            transform: translateY(-10px);
+        .btn-hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
         }
         
-        .cta-icon-text {
-            font-weight: 600;
-            font-size: 14px;
-            color: rgba(255,255,255,0.9);
+        .btn-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(210, 4, 45, 0.4);
         }
         
-        .btn-cta {
-            background-color: #fff;
-            color: var(--cherry);
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 18px;
-            display: inline-flex;
+        .btn-hover:hover::after {
+            left: 100%;
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .testimonial-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
             align-items: center;
-            gap: 12px;
-            transition: all 0.4s ease;
-            border: none;
+            justify-content: center;
+        }
+        
+        .testimonial-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 0 5px;
             cursor: pointer;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
         }
         
-        .btn-cta:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            color: var(--cherry-dark);
+        .testimonial-dot.active {
+            background-color: #D2042D;
+            transform: scale(1.3);
         }
         
-        .btn-cta span {
-            display: inline-block;
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #D2042D;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hover-scale {
             transition: transform 0.3s ease;
         }
         
-        .btn-cta:hover span {
-            transform: translateX(5px);
+        .hover-scale:hover {
+            transform: scale(1.05);
         }
-      
-<!-- Contact Section -->
-<section id="contact" class="contact">
-    <div class="container">
-        <div class="section-header animate-on-scroll">
-            <div class="section-badge">📞 CONTÁCTANOS</div>
-            <h2 class="section-title">HABLEMOS DE <span style="color: #990011;">TU PROYECTO</span></h2>
-            <p class="section-description">¿Listo para llevar tu negocio al siguiente nivel? Contáctanos y hagamos que suceda.</p>
+        
+        .gradient-border {
+            position: relative;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(45deg, #D2042D, #FF6EC7);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-md py-4 px-6 md:px-12 border-b border-red-900">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-red-600 glow">
+                JUNKY<span class="text-white">AGENCY</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="font-semibold hover:text-red-600 transition-colors duration-300 nav-link">Inicio</a>
+                <a href="#services" class="font-semibold hover:text-red-600 transition-colors duration-300 nav-link">Servicios</a>
+                <a href="#about" class="font-semibold hover:text-red-600 transition-colors duration-300 nav-link">Nosotros</a>
+                <a href="#results" class="font-semibold hover:text-red-600 transition-colors duration-300 nav-link">Resultados</a>
+                <a href="#contact" class="font-semibold hover:text-red-600 transition-colors duration-300 nav-link">Contacto</a>
+            </div>
+            
+            <button class="md:hidden text-2xl hover:text-red-600 transition-colors">
+                ☰
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center custom-shape bg-gradient-to-br from-black via-red-900 to-black pt-20 pb-32 relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-20 h-20 bg-red-600 rounded-full opacity-20 blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-32 h-32 bg-pink-600 rounded-full opacity-20 blur-3xl"></div>
+            <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-red-500 rounded-full opacity-10 blur-3xl"></div>
         </div>
         
-        <div class="contact-content">
-            <form id="contact-form" class="contact-form animate-on-scroll" action="https://formspree.io/f/xeogyaqn" method="POST">
-                <div class="form-group">
-                    <label for="name" class="form-label">Nombre</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre" required>
-                </div>
+        <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center relative z-10">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight fade-in">
+                    <span class="gradient-text text-shadow">ADS QUE VENDEN,</span><br>
+                    <span class="text-white text-shadow">NO QUE DECORAN</span>
+                </h1>
                 
-                <div class="form-group">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
-                </div>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 fade-in delay-200">
+                    Campañas digitales que generan <span class="text-pink-400 font-bold">resultados reales</span> para tu negocio. Sin rodeos. Sin excusas. 💸
+                </p>
                 
-                <div class="form-group">
-                    <label for="business" class="form-label">Negocio</label>
-                    <input type="text" id="business" name="business" class="form-input" placeholder="Nombre de tu negocio">
+                <div class="flex flex-col sm:flex-row gap-4 fade-in delay-300">
+                    <a href="#contact" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center btn-hover">
+                        <span>CONTÁCTANOS</span>
+                        <span class="ml-2 text-xl bounce">🚀</span>
+                    </a>
+                    
+                    <a href="#services" class="bg-transparent border-2 border-white hover:border-red-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center btn-hover">
+                        <span>VER SERVICIOS</span>
+                        <span class="ml-2 bounce">👇</span>
+                    </a>
                 </div>
-                
-                <div class="form-group">
-                    <label for="message" class="form-label">Mensaje</label>
-                    <textarea id="message" name="message" class="form-input" placeholder="Cuéntanos sobre tu proyecto..." required></textarea>
+            </div>
+            
+            <div class="md:w-1/2 float fade-in delay-400">
+                <div class="relative">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-lg mx-auto spin glow">
+                        <path fill="#D2042D" d="M47.7,-57.2C59.9,-45.3,67.2,-28.7,69.2,-11.5C71.2,5.7,68,23.5,58.5,36.6C49,49.7,33.2,58.1,15.8,63.9C-1.6,69.7,-20.6,72.9,-35.9,66.2C-51.2,59.5,-62.8,42.9,-68.4,24.8C-74,6.7,-73.6,-12.9,-65.4,-28.1C-57.2,-43.3,-41.2,-54.1,-25.5,-64.3C-9.8,-74.5,5.7,-84.1,20.8,-80.5C35.9,-76.9,50.5,-60.1,47.7,-57.2Z" transform="translate(100 100)" />
+                    </svg>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                        <span class="text-9xl bounce glow">🔥</span>
+                    </div>
                 </div>
-                
-                <button type="submit" class="btn-primary" style="width: 100%;">
-                    Enviar mensaje
-                    <span>→</span>
-                </button>
+            </div>
+        </div>
+    </section>
 
-                <p id="form-success" style="display: none; color: green; margin-top: 1rem;">¡Gracias! Tu mensaje ha sido enviado. Pronto te contactaremos.</p>
-            </form>
+    <!-- Marquee Banner -->
+    <div class="bg-gradient-to-r from-red-700 to-red-600 py-3 overflow-hidden relative">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <div class="marquee-item text-xl font-bold">🔥 HACEMOS MARKETING QUE VENDE, NO QUE DECORA 🔥</div>
+                <div class="marquee-item text-xl font-bold">💰 RESULTADOS REALES PARA NEGOCIOS REALES 💰</div>
+                <div class="marquee-item text-xl font-bold">🚀 ESTRATEGIAS DIGITALES QUE CONVIERTEN 🚀</div>
+                <div class="marquee-item text-xl font-bold">💥 JUNKY AGENCY: TU PARTNER DIGITAL 💥</div>
+                <div class="marquee-item text-xl font-bold">📈 HACEMOS CRECER TU NEGOCIO 📈</div>
+            </div>
         </div>
     </div>
-</section>
 
-<script>
-    const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('form-success');
-
-    form.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-
-        try {
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                form.reset();
-                successMessage.style.display = 'block';
-            } else {
-                alert("Hubo un problema al enviar el mensaje. Inténtalo de nuevo.");
-            }
-        } catch (error) {
-            alert("Error de red. Intenta más tarde.");
-        }
-    });
-</script>
-             
-                    <button type="submit" class="btn-primary" style="width: 100%;">
-                        Enviar mensaje
-                        <span>→</span>
-                    </button>
-                </form>
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-black relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute bottom-1/3 right-1/3 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black mb-4 gradient-text text-shadow">NUESTROS SERVICIOS</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">Soluciones digitales que hacen crecer tu negocio. Sin complicaciones, solo resultados.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in">
+                    <div class="text-5xl mb-6 pulse">🎯</div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-600">Facebook & Instagram Ads</h3>
+                    <p class="text-gray-300">Campañas que convierten visitantes en clientes. Optimizamos cada centavo de tu inversión para maximizar resultados.</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                </div>
                 
-                <div class="contact-info animate-on-scroll">
-                    <h3 class="contact-title">¿Prefieres hablar directamente?</h3>
-                    <p class="contact-description">Estamos disponibles para responder todas tus preguntas y ayudarte a encontrar la mejor solución para tu negocio.</p>
+                <!-- Service 2 -->
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-100">
+                    <div class="text-5xl mb-6 pulse">🔍</div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-600">Google Ads</h3>
+                    <p class="text-gray-300">Posiciónate donde tus clientes te buscan. Campañas de Search, Display y YouTube que generan tráfico cualificado.</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-200">
+                    <div class="text-5xl mb-6 pulse">📊</div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-600">Estrategia Digital</h3>
+                    <p class="text-gray-300">Planificación integral para tu presencia online. Definimos el camino para alcanzar tus objetivos de negocio.</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-300">
+                    <div class="text-5xl mb-6 pulse">💻</div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-600">Diseño Web</h3>
+                    <p class="text-gray-300">Sitios web que no solo se ven increíbles, sino que convierten. Optimizados para móviles y con enfoque en conversión.</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-400">
+                    <div class="text-5xl mb-6 pulse">📱</div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-600">Social Media</h3>
+                    <p class="text-gray-300">Gestión de redes sociales con contenido que conecta con tu audiencia y construye una comunidad fiel a tu marca.</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-500">
+                    <div class="text-5xl mb-6 pulse">📈</div>
+                    <h3 class="text-2xl font-bold mb-4 text-red-600">Análisis y Reportes</h3>
+                    <p class="text-gray-300">Informes claros y accionables. Entenderás exactamente qué está funcionando y dónde podemos mejorar.</p>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 custom-shape-reverse bg-gradient-to-br from-red-900 via-black to-black relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/3 right-1/4 w-64 h-64 bg-red-800 rounded-full opacity-20 blur-3xl"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-48 h-48 bg-pink-800 rounded-full opacity-20 blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 float fade-in">
+                    <div class="relative">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-md mx-auto spin glow">
+                            <path fill="#FF6EC7" d="M40.8,-62.2C52.9,-56.3,62.8,-44.7,68.5,-31.3C74.2,-17.9,75.8,-2.7,73.2,11.8C70.7,26.2,64,39.9,53.4,49.9C42.9,59.9,28.5,66.2,13.7,69.1C-1.1,72,-16.2,71.5,-29.9,66.2C-43.6,60.9,-55.8,50.8,-62.3,38C-68.8,25.2,-69.5,9.7,-67.2,-4.7C-64.9,-19.1,-59.6,-32.4,-50.5,-40.8C-41.4,-49.2,-28.5,-52.7,-16,-57.3C-3.5,-61.9,8.6,-67.6,21.4,-68.1C34.2,-68.6,47.7,-63.9,40.8,-62.2Z" transform="translate(100 100)" />
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-8xl bounce glow">🤘</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 fade-in delay-200">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text text-shadow">SOMOS JUNKY AGENCY</h2>
                     
-                    <div class="contact-methods">
-                        <div class="contact-method">
-                            <div class="contact-icon">📧</div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>hola@junkyagency.com</p>
-                            </div>
+                    <p class="text-xl mb-6 text-gray-300">
+                        No somos tu típica agencia aburrida. Somos un equipo de creativos obsesionados con los resultados y amantes del marketing que funciona.
+                    </p>
+                    
+                    <p class="text-xl mb-6 text-gray-300">
+                        Desde nuestra base en Melaque, Jalisco, trabajamos con clientes de todo el mundo que buscan destacar en el saturado mundo digital.
+                    </p>
+                    
+                    <p class="text-xl mb-8 text-gray-300">
+                        Nuestro enfoque es simple: <span class="text-red-600 font-bold">crear estrategias que vendan</span>, no que solo se vean bonitas. Si buscas números reales y crecimiento tangible, estás en el lugar correcto.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale">
+                            <span class="font-bold">🚀 Resultados medibles</span>
                         </div>
-                        
-                        <div class="contact-method">
-                            <div class="contact-icon">📱</div>
-                            <div>
-                                <h4>Teléfono</h4>
-                                <p>+52 315 123 4567</p>
-                            </div>
+                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale">
+                            <span class="font-bold">💡 Creatividad sin límites</span>
                         </div>
-                        
-                        <div class="contact-method">
-                            <div class="contact-icon">📍</div>
-                            <div>
-                                <h4>Ubicación</h4>
-                                <p>Melaque, Jalisco, México</p>
-                            </div>
+                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale">
+                            <span class="font-bold">🔥 Estrategias que convierten</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <div class="footer-logo">
-                        <span>JUNKY</span> AGENCY
+
+    <!-- Results Section -->
+    <section id="results" class="py-20 bg-black relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/4 right-1/3 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute bottom-1/3 left-1/4 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black mb-4 gradient-text text-shadow">RESULTADOS QUE HABLAN</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">No prometemos, entregamos. Estos son algunos de los resultados que hemos conseguido para nuestros clientes.</p>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="mb-20 fade-in delay-200">
+                <div class="testimonial-slider h-[400px]" id="testimonialSlider">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide active">
+                        <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border max-w-4xl mx-auto shadow-xl shadow-red-900/20">
+                            <div class="flex flex-col md:flex-row gap-8 items-center">
+                                <div class="md:w-1/3">
+                                    <div class="bg-gradient-to-br from-red-600 to-pink-500 p-1 rounded-xl">
+                                        <div class="bg-black p-4 rounded-lg">
+                                            <div class="text-6xl mb-4 text-center pulse">🍕</div>
+                                            <h4 class="text-xl font-bold text-center mb-2">Pizzería Napoli</h4>
+                                            <p class="text-gray-400 text-center text-sm">Restaurante Local</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="md:w-2/3">
+                                    <div class="flex items-center mb-4">
+                                        <div class="text-4xl text-yellow-400 glow">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                    
+                                    <h3 class="text-2xl font-bold mb-4 text-red-600">
+                                        <span class="border-b-2 border-red-600 pb-1">+210% en ventas en 3 meses</span>
+                                    </h3>
+                                    
+                                    <p class="text-gray-300 mb-6 text-lg italic">
+                                        "Junky Agency transformó nuestro negocio. Pasamos de tener un local medio vacío a necesitar ampliar el espacio. Su estrategia de Facebook Ads dirigida a nuestro público local fue increíblemente efectiva."
+                                    </p>
+                                    
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Facebook Ads</span>
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Google My Business</span>
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Estrategia Local</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="footer-description">
-                        Agencia de marketing digital especializada en estrategias que generan resultados medibles y rentables para tu negocio.
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide">
+                        <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border max-w-4xl mx-auto shadow-xl shadow-red-900/20">
+                            <div class="flex flex-col md:flex-row gap-8 items-center">
+                                <div class="md:w-1/3">
+                                    <div class="bg-gradient-to-br from-purple-600 to-pink-500 p-1 rounded-xl">
+                                        <div class="bg-black p-4 rounded-lg">
+                                            <div class="text-6xl mb-4 text-center pulse">👗</div>
+                                            <h4 class="text-xl font-bold text-center mb-2">ModaFusion</h4>
+                                            <p class="text-gray-400 text-center text-sm">E-commerce de Moda</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="md:w-2/3">
+                                    <div class="flex items-center mb-4">
+                                        <div class="text-4xl text-yellow-400 glow">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                    
+                                    <h3 class="text-2xl font-bold mb-4 text-red-600">
+                                        <span class="border-b-2 border-red-600 pb-1">ROAS de 11.5x en campañas de Instagram</span>
+                                    </h3>
+                                    
+                                    <p class="text-gray-300 mb-6 text-lg italic">
+                                        "Después de trabajar con 3 agencias diferentes, por fin encontramos a Junky. Entienden nuestro producto y han creado campañas que realmente generan ventas. Cada $1 invertido nos devuelve $11.5 en ventas."
+                                    </p>
+                                    
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Instagram Ads</span>
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Influencer Marketing</span>
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Retargeting</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide">
+                        <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border max-w-4xl mx-auto shadow-xl shadow-red-900/20">
+                            <div class="flex flex-col md:flex-row gap-8 items-center">
+                                <div class="md:w-1/3">
+                                    <div class="bg-gradient-to-br from-red-600 to-red-900 p-1 rounded-xl">
+                                        <div class="bg-black p-4 rounded-lg">
+                                            <div class="text-6xl mb-4 text-center pulse">⚖️</div>
+                                            <h4 class="text-xl font-bold text-center mb-2">Abogados Asociados</h4>
+                                            <p class="text-gray-400 text-center text-sm">Servicios Legales</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="md:w-2/3">
+                                    <div class="flex items-center mb-4">
+                                        <div class="text-4xl text-yellow-400 glow">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                    
+                                    <h3 class="text-2xl font-bold mb-4 text-red-600">
+                                        <span class="border-b-2 border-red-600 pb-1">+320% leads cualificados en 2 meses</span>
+                                    </h3>
+                                    
+                                    <p class="text-gray-300 mb-6 text-lg italic">
+                                        "Nuestra agenda está ahora completamente llena gracias a las campañas de Google Ads de Junky Agency. Han logrado que nuestro costo por adquisición de cliente baje un 60% mientras triplicamos el número de consultas."
+                                    </p>
+                                    
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Google Ads</span>
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Landing Page</span>
+                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">SEO Local</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial Navigation -->
+                <div class="flex justify-center mt-8" id="testimonialDots">
+                    <div class="testimonial-dot active" data-slide="0"></div>
+                    <div class="testimonial-dot" data-slide="1"></div>
+                    <div class="testimonial-dot" data-slide="2"></div>
+                </div>
+            </div>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                <!-- Stat 1 -->
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale fade-in delay-300">
+                    <div class="text-center">
+                        <div class="text-6xl font-black mb-2 gradient-text" id="counter1">350%</div>
+                        <div class="text-xl text-gray-300">ROI promedio</div>
+                        <div class="mt-4 text-sm text-gray-400">Para nuestros clientes de e-commerce</div>
+                    </div>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale fade-in delay-400">
+                    <div class="text-center">
+                        <div class="text-6xl font-black mb-2 gradient-text" id="counter2">50+</div>
+                        <div class="text-xl text-gray-300">Clientes satisfechos</div>
+                        <div class="mt-4 text-sm text-gray-400">Y creciendo cada mes</div>
+                    </div>
+                </div>
+                
+                <!-- Stat 3 -->
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale fade-in delay-500">
+                    <div class="text-center">
+                        <div class="text-6xl font-black mb-2 gradient-text">24/7</div>
+                        <div class="text-xl text-gray-300">Soporte y monitoreo</div>
+                        <div class="mt-4 text-sm text-gray-400">Siempre pendientes de tus campañas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-red-700 to-red-900 relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-20 bg-black opacity-10"></div>
+            <div class="absolute bottom-0 right-0 w-full h-20 bg-black opacity-10"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-500 rounded-full opacity-20 blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 md:px-12 text-center relative z-10">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 text-white text-shadow fade-in">¿LISTO PARA VENDER MÁS?</h2>
+            <p class="text-xl text-white mb-10 max-w-3xl mx-auto fade-in delay-100">
+                No más campañas que solo gastan tu dinero. Es hora de invertir en marketing que realmente genera resultados.
+            </p>
+            <a href="#contact" class="inline-block bg-black text-white font-bold py-4 px-10 rounded-full text-xl transition-all duration-300 btn-hover shadow-xl shadow-red-900/30 fade-in delay-200">
+                QUIERO CRECER MI NEGOCIO <span class="bounce inline-block ml-2">🚀</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black relative">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-1/3 left-1/4 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/3 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text text-shadow">HABLEMOS</h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Cuéntanos sobre tu negocio y tus objetivos. Diseñaremos una estrategia personalizada para ti.
                     </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📱</a>
-                        <a href="#" class="social-link">📸</a>
-                        <a href="#" class="social-link">🐦</a>
-                        <a href="#" class="social-link">💼</a>
+                    
+                    <div class="mb-8">
+                        <div class="flex items-center mb-4 hover:translate-x-2 transition-transform duration-300">
+                            <div class="text-3xl mr-4 pulse">📍</div>
+                            <div>
+                                <div class="font-bold">Ubicación</div>
+                                <div class="text-gray-300">Melaque, Jalisco, México</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-4 hover:translate-x-2 transition-transform duration-300">
+                            <div class="text-3xl mr-4 pulse">📱</div>
+                            <div>
+                                <div class="font-bold">WhatsApp</div>
+                                <a href="https://wa.me/1234567890" class="text-red-600 hover:text-red-500 transition-colors">+52 123 456 7890</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center hover:translate-x-2 transition-transform duration-300">
+                            <div class="text-3xl mr-4 pulse">📧</div>
+                            <div>
+                                <div class="font-bold">Email</div>
+                                <a href="mailto:hola@junkyagency.com" class="text-red-600 hover:text-red-500 transition-colors">hola@junkyagency.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="footer-links">
-                    <h3>Enlaces</h3>
-                    <div class="footer-nav">
-                        <a href="#home">Inicio</a>
-                        <a href="#services">Servicios</a>
-                        <a href="#about">Nosotros</a>
-                        <a href="#testimonials">Testimonios</a>
-                        <a href="#contact">Contacto</a>
-                    </div>
+                <div class="md:w-1/2 fade-in delay-300">
+                    <form class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-300 mb-2 font-semibold">Nombre</label>
+                            <input type="text" id="name" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="Tu nombre">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-300 mb-2 font-semibold">Email</label>
+                            <input type="email" id="email" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="tu@email.com">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 mb-2 font-semibold">Mensaje</label>
+                            <textarea id="message" rows="5" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-all duration-300 flex items-center justify-center btn-hover shadow-lg shadow-red-900/30">
+                            <span>ENVIAR MENSAJE</span>
+                            <span class="ml-2 bounce">✉️</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-red-600 py-12">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <a href="#" class="text-3xl font-bold text-red-600 glow">
+                        JUNKY<span class="text-white">AGENCY</span>
+                    </a>
+                    <p class="text-gray-400 mt-2">Marketing Digital que Vende</p>
                 </div>
                 
-                <div class="footer-links">
-                    <h3>Servicios</h3>
-                    <div class="footer-nav">
-                        <a href="#">Facebook Ads</a>
-                        <a href="#">Google Ads</a>
-                        <a href="#">Estrategia Digital</a>
-                        <a href="#">Funnel Marketing</a>
-                        <a href="#">Content Marketing</a>
+                <div class="flex flex-col md:flex-row md:space-x-12 space-y-6 md:space-y-0 text-center md:text-left">
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Navegación</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#home" class="hover:text-red-600 transition-colors">Inicio</a></li>
+                            <li><a href="#services" class="hover:text-red-600 transition-colors">Servicios</a></li>
+                            <li><a href="#about" class="hover:text-red-600 transition-colors">Nosotros</a></li>
+                            <li><a href="#results" class="hover:text-red-600 transition-colors">Resultados</a></li>
+                            <li><a href="#contact" class="hover:text-red-600 transition-colors">Contacto</a></li>
+                        </ul>
                     </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Legal</h3>
-                    <div class="footer-nav">
-                        <a href="#">Términos y Condiciones</a>
-                        <a href="#">Política de Privacidad</a>
-                        <a href="#">Aviso Legal</a>
-                        <a href="#">Cookies</a>
+                    
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Servicios</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Facebook Ads</a></li>
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Google Ads</a></li>
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Diseño Web</a></li>
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Social Media</a></li>
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Estrategia Digital</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-white font-bold mb-4">Legal</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Términos y Condiciones</a></li>
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Política de Privacidad</a></li>
+                            <li><a href="#" class="hover:text-red-600 transition-colors">Aviso Legal</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2023 Junky Agency. Todos los derechos reservados.</p>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2023 Junky Agency. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- Scroll to top button -->
-    <div class="scroll-top">
-        ↑
-    </div>
-    
+
     <script>
-        // Menú móvil
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-        
-        // Navbar scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // Scroll to top button
-        const scrollTopBtn = document.querySelector('.scroll-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('active');
-            } else {
-                scrollTopBtn.classList.remove('active');
-            }
-        });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Animaciones al hacer scroll
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.animate-on-scroll');
+        // Testimonial Slider
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            let currentSlide = 0;
             
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight * 0.85;
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
                 
-                if (elementPosition < screenPosition) {
-                    element.classList.add('animated');
-                }
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                currentSlide = index;
+            }
+            
+            // Click event for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    showSlide(index);
+                });
             });
-        };
-        
-        // Ejecutar animaciones al cargar y al hacer scroll
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
-        
-        // Animación de servicios
-        const serviceCards = document.querySelectorAll('.service-card');
-        serviceCards.forEach((card, index) => {
-            card.style.transitionDelay = `${0.1 * index}s`;
-        });
-        
-        // Formulario de contacto
-        const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-            contactForm.reset();
-        });
-    </script>
-</body>
-</html>
+            
+            // Auto slide
+            setInterval(() => {
+                let nextSlide = currentSlide + 1;
+                if (nextSlide >= slides.length) {
+                    nextSlide = 0;
+                }
+                showSlide(nextSlide);
+            }, 5000);
+            
+            // Scroll animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                observer.obse
