@@ -66,15 +66,91 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-15deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes ripple {
+            0% { box-shadow: 0 0 0 0 rgba(210, 4, 45, 0.4); }
+            100% { box-shadow: 0 0 0 20px rgba(210, 4, 45, 0); }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blinkCursor {
+            from, to { border-color: transparent }
+            50% { border-color: #D2042D; }
+        }
+        
         .float { animation: float 6s ease-in-out infinite; }
         .pulse { animation: pulse 3s ease-in-out infinite; }
         .spin { animation: spin 10s linear infinite; }
         .bounce { animation: bounce 2s ease-in-out infinite; }
         .glow { animation: glow 3s ease-in-out infinite; }
+        .heartbeat { animation: heartbeat 2s ease-in-out infinite; }
+        .shake:hover { animation: shake 0.5s ease-in-out; }
+        .ripple { animation: ripple 1.5s linear infinite; }
+        
+        .slide-in-left { animation: slideInLeft 0.8s ease-out forwards; }
+        .slide-in-right { animation: slideInRight 0.8s ease-out forwards; }
+        .zoom-in { animation: zoomIn 0.8s ease-out forwards; }
+        .rotate-in { animation: rotateIn 0.8s ease-out forwards; }
         
         .fade-in {
             opacity: 0;
             animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blinkCursor .75s step-end infinite;
+            border-right: 3px solid;
+        }
+        
+        .gradient-flow {
+            background: linear-gradient(270deg, #D2042D, #FF6EC7, #D2042D);
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
         }
         
         .delay-100 { animation-delay: 0.1s; }
@@ -82,6 +158,11 @@
         .delay-300 { animation-delay: 0.3s; }
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-900 { animation-delay: 0.9s; }
+        .delay-1000 { animation-delay: 1s; }
         
         .marquee-container {
             overflow: hidden;
@@ -152,45 +233,6 @@
             left: 100%;
         }
         
-        .testimonial-slider {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-        }
-        
-        .testimonial-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .testimonial-slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
-        
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            margin: 0 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .testimonial-dot.active {
-            background-color: #D2042D;
-            transform: scale(1.3);
-        }
-        
         .nav-link {
             position: relative;
         }
@@ -245,13 +287,117 @@
             mask-composite: exclude;
             pointer-events: none;
         }
+        
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        
+        .tilt-on-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .tilt-on-hover:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+        }
+        
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .animated-border {
+            position: relative;
+        }
+        
+        .animated-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D2042D, transparent);
+            animation: gradientFlow 3s ease infinite;
+        }
+        
+        .hover-3d {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-3d:hover {
+            transform: translateY(-5px) rotateX(10deg);
+            box-shadow: 0 10px 20px rgba(210, 4, 45, 0.3);
+        }
+        
+        .magnetic-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .magnetic-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(210, 4, 45, 0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .magnetic-button:hover::before {
+            opacity: 0.3;
+        }
+        
+        .result-card {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(210, 4, 45, 0.3);
+        }
+        
+        .result-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .result-card:hover .result-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
     </style>
 </head>
 <body>
+    <!-- Floating Particles -->
+    <div class="floating-particles" id="particles"></div>
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black bg-opacity-80 backdrop-blur-md py-4 px-6 md:px-12 border-b border-red-900">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-3xl font-bold text-red-600 glow">
+            <a href="#" class="text-3xl font-bold text-red-600 glow heartbeat">
                 JUNKY<span class="text-white">AGENCY</span>
             </a>
             
@@ -263,7 +409,7 @@
                 <a href="#contact" class="font-semibold hover:text-red-600 transition-colors duration-300 nav-link">Contacto</a>
             </div>
             
-            <button class="md:hidden text-2xl hover:text-red-600 transition-colors">
+            <button class="md:hidden text-2xl hover:text-red-600 transition-colors shake">
                 ☰
             </button>
         </div>
@@ -272,24 +418,24 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center custom-shape bg-gradient-to-br from-black via-red-900 to-black pt-20 pb-32 relative">
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-20 h-20 bg-red-600 rounded-full opacity-20 blur-3xl"></div>
-            <div class="absolute bottom-20 right-10 w-32 h-32 bg-pink-600 rounded-full opacity-20 blur-3xl"></div>
-            <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-red-500 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute top-20 left-10 w-20 h-20 bg-red-600 rounded-full opacity-20 blur-3xl pulse"></div>
+            <div class="absolute bottom-20 right-10 w-32 h-32 bg-pink-600 rounded-full opacity-20 blur-3xl pulse"></div>
+            <div class="absolute top-1/3 right-1/4 w-24 h-24 bg-red-500 rounded-full opacity-10 blur-3xl float"></div>
         </div>
         
         <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center relative z-10">
             <div class="md:w-1/2 mb-12 md:mb-0">
-                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight fade-in">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight slide-in-left">
                     <span class="gradient-text text-shadow">ADS QUE VENDEN,</span><br>
-                    <span class="text-white text-shadow">NO QUE DECORAN</span>
+                    <span class="text-white text-shadow typing-effect">NO QUE DECORAN</span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl mb-8 text-gray-300 fade-in delay-200">
-                    Campañas digitales que generan <span class="text-pink-400 font-bold">resultados reales</span> para tu negocio. Sin rodeos. Sin excusas. 💸
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 slide-in-left delay-300">
+                    Campañas digitales que generan <span class="text-pink-400 font-bold">resultados reales</span> para tu negocio. Sin rodeos. Sin excusas. <span class="inline-block bounce">💸</span>
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-4 fade-in delay-300">
-                    <a href="#contact" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center btn-hover">
+                <div class="flex flex-col sm:flex-row gap-4 slide-in-left delay-500">
+                    <a href="#contact" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 flex items-center justify-center btn-hover ripple">
                         <span>CONTÁCTANOS</span>
                         <span class="ml-2 text-xl bounce">🚀</span>
                     </a>
@@ -301,7 +447,7 @@
                 </div>
             </div>
             
-            <div class="md:w-1/2 float fade-in delay-400">
+            <div class="md:w-1/2 float slide-in-right delay-400">
                 <div class="relative">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-lg mx-auto spin glow">
                         <path fill="#D2042D" d="M47.7,-57.2C59.9,-45.3,67.2,-28.7,69.2,-11.5C71.2,5.7,68,23.5,58.5,36.6C49,49.7,33.2,58.1,15.8,63.9C-1.6,69.7,-20.6,72.9,-35.9,66.2C-51.2,59.5,-62.8,42.9,-68.4,24.8C-74,6.7,-73.6,-12.9,-65.4,-28.1C-57.2,-43.3,-41.2,-54.1,-25.5,-64.3C-9.8,-74.5,5.7,-84.1,20.8,-80.5C35.9,-76.9,50.5,-60.1,47.7,-57.2Z" transform="translate(100 100)" />
@@ -315,7 +461,7 @@
     </section>
 
     <!-- Marquee Banner -->
-    <div class="bg-gradient-to-r from-red-700 to-red-600 py-3 overflow-hidden relative">
+    <div class="bg-gradient-flow py-3 overflow-hidden relative">
         <div class="marquee-container">
             <div class="marquee-content">
                 <div class="marquee-item text-xl font-bold">🔥 HACEMOS MARKETING QUE VENDE, NO QUE DECORA 🔥</div>
@@ -330,63 +476,63 @@
     <!-- Services Section -->
     <section id="services" class="py-20 bg-black relative">
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl"></div>
-            <div class="absolute bottom-1/3 right-1/3 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl pulse"></div>
+            <div class="absolute bottom-1/3 right-1/3 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl float"></div>
         </div>
         
         <div class="container mx-auto px-6 md:px-12 relative z-10">
-            <div class="text-center mb-16 fade-in">
+            <div class="text-center mb-16 reveal-on-scroll">
                 <h2 class="text-4xl md:text-5xl font-black mb-4 gradient-text text-shadow">NUESTROS SERVICIOS</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">Soluciones digitales que hacen crecer tu negocio. Sin complicaciones, solo resultados.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in">
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll hover-3d">
                     <div class="text-5xl mb-6 pulse">🎯</div>
                     <h3 class="text-2xl font-bold mb-4 text-red-600">Facebook & Instagram Ads</h3>
                     <p class="text-gray-300">Campañas que convierten visitantes en clientes. Optimizamos cada centavo de tu inversión para maximizar resultados.</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6 animated-border"></div>
                 </div>
                 
                 <!-- Service 2 -->
-                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-100">
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll hover-3d">
                     <div class="text-5xl mb-6 pulse">🔍</div>
                     <h3 class="text-2xl font-bold mb-4 text-red-600">Google Ads</h3>
                     <p class="text-gray-300">Posiciónate donde tus clientes te buscan. Campañas de Search, Display y YouTube que generan tráfico cualificado.</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6 animated-border"></div>
                 </div>
                 
                 <!-- Service 3 -->
-                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-200">
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll hover-3d">
                     <div class="text-5xl mb-6 pulse">📊</div>
                     <h3 class="text-2xl font-bold mb-4 text-red-600">Estrategia Digital</h3>
                     <p class="text-gray-300">Planificación integral para tu presencia online. Definimos el camino para alcanzar tus objetivos de negocio.</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6 animated-border"></div>
                 </div>
                 
                 <!-- Service 4 -->
-                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-300">
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll hover-3d">
                     <div class="text-5xl mb-6 pulse">💻</div>
                     <h3 class="text-2xl font-bold mb-4 text-red-600">Diseño Web</h3>
                     <p class="text-gray-300">Sitios web que no solo se ven increíbles, sino que convierten. Optimizados para móviles y con enfoque en conversión.</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6 animated-border"></div>
                 </div>
                 
                 <!-- Service 5 -->
-                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-400">
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll hover-3d">
                     <div class="text-5xl mb-6 pulse">📱</div>
                     <h3 class="text-2xl font-bold mb-4 text-red-600">Social Media</h3>
                     <p class="text-gray-300">Gestión de redes sociales con contenido que conecta con tu audiencia y construye una comunidad fiel a tu marca.</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6 animated-border"></div>
                 </div>
                 
                 <!-- Service 6 -->
-                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 fade-in delay-500">
+                <div class="service-card bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll hover-3d">
                     <div class="text-5xl mb-6 pulse">📈</div>
                     <h3 class="text-2xl font-bold mb-4 text-red-600">Análisis y Reportes</h3>
                     <p class="text-gray-300">Informes claros y accionables. Entenderás exactamente qué está funcionando y dónde podemos mejorar.</p>
-                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6"></div>
+                    <div class="w-16 h-1 bg-gradient-to-r from-red-600 to-pink-500 mt-6 animated-border"></div>
                 </div>
             </div>
         </div>
@@ -395,14 +541,14 @@
     <!-- About Section -->
     <section id="about" class="py-20 custom-shape-reverse bg-gradient-to-br from-red-900 via-black to-black relative">
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/3 right-1/4 w-64 h-64 bg-red-800 rounded-full opacity-20 blur-3xl"></div>
-            <div class="absolute bottom-1/4 left-1/3 w-48 h-48 bg-pink-800 rounded-full opacity-20 blur-3xl"></div>
+            <div class="absolute top-1/3 right-1/4 w-64 h-64 bg-red-800 rounded-full opacity-20 blur-3xl pulse"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-48 h-48 bg-pink-800 rounded-full opacity-20 blur-3xl float"></div>
         </div>
         
         <div class="container mx-auto px-6 md:px-12 relative z-10">
             <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0 float fade-in">
-                    <div class="relative">
+                <div class="md:w-1/2 mb-12 md:mb-0 float reveal-on-scroll">
+                    <div class="relative tilt-on-hover">
                         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-md mx-auto spin glow">
                             <path fill="#FF6EC7" d="M40.8,-62.2C52.9,-56.3,62.8,-44.7,68.5,-31.3C74.2,-17.9,75.8,-2.7,73.2,11.8C70.7,26.2,64,39.9,53.4,49.9C42.9,59.9,28.5,66.2,13.7,69.1C-1.1,72,-16.2,71.5,-29.9,66.2C-43.6,60.9,-55.8,50.8,-62.3,38C-68.8,25.2,-69.5,9.7,-67.2,-4.7C-64.9,-19.1,-59.6,-32.4,-50.5,-40.8C-41.4,-49.2,-28.5,-52.7,-16,-57.3C-3.5,-61.9,8.6,-67.6,21.4,-68.1C34.2,-68.6,47.7,-63.9,40.8,-62.2Z" transform="translate(100 100)" />
                         </svg>
@@ -412,7 +558,7 @@
                     </div>
                 </div>
                 
-                <div class="md:w-1/2 fade-in delay-200">
+                <div class="md:w-1/2 reveal-on-scroll">
                     <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text text-shadow">SOMOS JUNKY AGENCY</h2>
                     
                     <p class="text-xl mb-6 text-gray-300">
@@ -428,13 +574,13 @@
                     </p>
                     
                     <div class="flex flex-wrap gap-4">
-                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale">
+                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale zoom-in delay-100">
                             <span class="font-bold">🚀 Resultados medibles</span>
                         </div>
-                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale">
+                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale zoom-in delay-300">
                             <span class="font-bold">💡 Creatividad sin límites</span>
                         </div>
-                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale">
+                        <div class="bg-red-600 bg-opacity-20 px-6 py-3 rounded-full hover:bg-opacity-40 transition-all duration-300 hover-scale zoom-in delay-500">
                             <span class="font-bold">🔥 Estrategias que convierten</span>
                         </div>
                     </div>
@@ -446,163 +592,163 @@
     <!-- Results Section -->
     <section id="results" class="py-20 bg-black relative">
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/4 right-1/3 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl"></div>
-            <div class="absolute bottom-1/3 left-1/4 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute top-1/4 right-1/3 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl pulse"></div>
+            <div class="absolute bottom-1/3 left-1/4 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl float"></div>
         </div>
         
         <div class="container mx-auto px-6 md:px-12 relative z-10">
-            <div class="text-center mb-16 fade-in">
+            <div class="text-center mb-16 reveal-on-scroll">
                 <h2 class="text-4xl md:text-5xl font-black mb-4 gradient-text text-shadow">RESULTADOS QUE HABLAN</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">No prometemos, entregamos. Estos son algunos de los resultados que hemos conseguido para nuestros clientes.</p>
             </div>
             
-            <!-- Testimonials -->
-            <div class="mb-20 fade-in delay-200">
-                <div class="testimonial-slider h-[400px]" id="testimonialSlider">
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-slide active">
-                        <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border max-w-4xl mx-auto shadow-xl shadow-red-900/20">
-                            <div class="flex flex-col md:flex-row gap-8 items-center">
-                                <div class="md:w-1/3">
-                                    <div class="bg-gradient-to-br from-red-600 to-pink-500 p-1 rounded-xl">
-                                        <div class="bg-black p-4 rounded-lg">
-                                            <div class="text-6xl mb-4 text-center pulse">🍕</div>
-                                            <h4 class="text-xl font-bold text-center mb-2">Pizzería Napoli</h4>
-                                            <p class="text-gray-400 text-center text-sm">Restaurante Local</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="md:w-2/3">
-                                    <div class="flex items-center mb-4">
-                                        <div class="text-4xl text-yellow-400 glow">⭐⭐⭐⭐⭐</div>
-                                    </div>
-                                    
-                                    <h3 class="text-2xl font-bold mb-4 text-red-600">
-                                        <span class="border-b-2 border-red-600 pb-1">+210% en ventas en 3 meses</span>
-                                    </h3>
-                                    
-                                    <p class="text-gray-300 mb-6 text-lg italic">
-                                        "Junky Agency transformó nuestro negocio. Pasamos de tener un local medio vacío a necesitar ampliar el espacio. Su estrategia de Facebook Ads dirigida a nuestro público local fue increíblemente efectiva."
-                                    </p>
-                                    
-                                    <div class="flex flex-wrap gap-3">
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Facebook Ads</span>
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Google My Business</span>
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Estrategia Local</span>
-                                    </div>
-                                </div>
+            <!-- Results List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- Result 1 -->
+                <div class="result-card bg-gradient-to-br from-gray-900 to-black p-6 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll slide-in-left">
+                    <div class="flex items-start gap-4">
+                        <div class="text-5xl result-icon glow">🍕</div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <h3 class="text-xl font-bold text-white">Pizzería Napoli</h3>
+                                <div class="ml-3 text-yellow-400">⭐⭐⭐⭐⭐</div>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-slide">
-                        <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border max-w-4xl mx-auto shadow-xl shadow-red-900/20">
-                            <div class="flex flex-col md:flex-row gap-8 items-center">
-                                <div class="md:w-1/3">
-                                    <div class="bg-gradient-to-br from-purple-600 to-pink-500 p-1 rounded-xl">
-                                        <div class="bg-black p-4 rounded-lg">
-                                            <div class="text-6xl mb-4 text-center pulse">👗</div>
-                                            <h4 class="text-xl font-bold text-center mb-2">ModaFusion</h4>
-                                            <p class="text-gray-400 text-center text-sm">E-commerce de Moda</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="md:w-2/3">
-                                    <div class="flex items-center mb-4">
-                                        <div class="text-4xl text-yellow-400 glow">⭐⭐⭐⭐⭐</div>
-                                    </div>
-                                    
-                                    <h3 class="text-2xl font-bold mb-4 text-red-600">
-                                        <span class="border-b-2 border-red-600 pb-1">ROAS de 11.5x en campañas de Instagram</span>
-                                    </h3>
-                                    
-                                    <p class="text-gray-300 mb-6 text-lg italic">
-                                        "Después de trabajar con 3 agencias diferentes, por fin encontramos a Junky. Entienden nuestro producto y han creado campañas que realmente generan ventas. Cada $1 invertido nos devuelve $11.5 en ventas."
-                                    </p>
-                                    
-                                    <div class="flex flex-wrap gap-3">
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Instagram Ads</span>
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Influencer Marketing</span>
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Retargeting</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-slide">
-                        <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border max-w-4xl mx-auto shadow-xl shadow-red-900/20">
-                            <div class="flex flex-col md:flex-row gap-8 items-center">
-                                <div class="md:w-1/3">
-                                    <div class="bg-gradient-to-br from-red-600 to-red-900 p-1 rounded-xl">
-                                        <div class="bg-black p-4 rounded-lg">
-                                            <div class="text-6xl mb-4 text-center pulse">⚖️</div>
-                                            <h4 class="text-xl font-bold text-center mb-2">Abogados Asociados</h4>
-                                            <p class="text-gray-400 text-center text-sm">Servicios Legales</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="md:w-2/3">
-                                    <div class="flex items-center mb-4">
-                                        <div class="text-4xl text-yellow-400 glow">⭐⭐⭐⭐⭐</div>
-                                    </div>
-                                    
-                                    <h3 class="text-2xl font-bold mb-4 text-red-600">
-                                        <span class="border-b-2 border-red-600 pb-1">+320% leads cualificados en 2 meses</span>
-                                    </h3>
-                                    
-                                    <p class="text-gray-300 mb-6 text-lg italic">
-                                        "Nuestra agenda está ahora completamente llena gracias a las campañas de Google Ads de Junky Agency. Han logrado que nuestro costo por adquisición de cliente baje un 60% mientras triplicamos el número de consultas."
-                                    </p>
-                                    
-                                    <div class="flex flex-wrap gap-3">
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Google Ads</span>
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">Landing Page</span>
-                                        <span class="bg-red-600 bg-opacity-20 px-4 py-1 rounded-full text-sm hover-scale">SEO Local</span>
-                                    </div>
-                                </div>
+                            <p class="text-red-600 font-bold text-2xl mb-2">+210% en ventas en 3 meses</p>
+                            <p class="text-gray-300 mb-3 italic">"Junky Agency transformó nuestro negocio. Pasamos de tener un local medio vacío a necesitar ampliar el espacio."</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Facebook Ads</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Google My Business</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Estrategia Local</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Testimonial Navigation -->
-                <div class="flex justify-center mt-8" id="testimonialDots">
-                    <div class="testimonial-dot active" data-slide="0"></div>
-                    <div class="testimonial-dot" data-slide="1"></div>
-                    <div class="testimonial-dot" data-slide="2"></div>
+                <!-- Result 2 -->
+                <div class="result-card bg-gradient-to-br from-gray-900 to-black p-6 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll slide-in-right">
+                    <div class="flex items-start gap-4">
+                        <div class="text-5xl result-icon glow">👗</div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <h3 class="text-xl font-bold text-white">ModaFusion</h3>
+                                <div class="ml-3 text-yellow-400">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p class="text-red-600 font-bold text-2xl mb-2">ROAS de 11.5x en campañas</p>
+                            <p class="text-gray-300 mb-3 italic">"Cada $1 invertido nos devuelve $11.5 en ventas. Nunca habíamos visto resultados así."</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Instagram Ads</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Influencer Marketing</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Retargeting</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result 3 -->
+                <div class="result-card bg-gradient-to-br from-gray-900 to-black p-6 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll slide-in-left">
+                    <div class="flex items-start gap-4">
+                        <div class="text-5xl result-icon glow">⚖️</div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <h3 class="text-xl font-bold text-white">Abogados Asociados</h3>
+                                <div class="ml-3 text-yellow-400">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p class="text-red-600 font-bold text-2xl mb-2">+320% leads cualificados</p>
+                            <p class="text-gray-300 mb-3 italic">"Nuestra agenda está ahora completamente llena gracias a las campañas de Google Ads."</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Google Ads</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Landing Page</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">SEO Local</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result 4 -->
+                <div class="result-card bg-gradient-to-br from-gray-900 to-black p-6 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll slide-in-right">
+                    <div class="flex items-start gap-4">
+                        <div class="text-5xl result-icon glow">🏋️</div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <h3 class="text-xl font-bold text-white">FitLife Gym</h3>
+                                <div class="ml-3 text-yellow-400">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p class="text-red-600 font-bold text-2xl mb-2">+175% nuevas membresías</p>
+                            <p class="text-gray-300 mb-3 italic">"Duplicamos nuestros miembros en solo 2 meses con una estrategia de marketing local impecable."</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Facebook Ads</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">WhatsApp Marketing</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Email Marketing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result 5 -->
+                <div class="result-card bg-gradient-to-br from-gray-900 to-black p-6 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll slide-in-left">
+                    <div class="flex items-start gap-4">
+                        <div class="text-5xl result-icon glow">🏠</div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <h3 class="text-xl font-bold text-white">Inmobiliaria Horizonte</h3>
+                                <div class="ml-3 text-yellow-400">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p class="text-red-600 font-bold text-2xl mb-2">-40% costo por lead</p>
+                            <p class="text-gray-300 mb-3 italic">"Conseguimos más clientes potenciales gastando menos. La segmentación fue clave."</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Google Ads</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Facebook Ads</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Remarketing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result 6 -->
+                <div class="result-card bg-gradient-to-br from-gray-900 to-black p-6 rounded-2xl border border-red-600 hover:border-red-500 reveal-on-scroll slide-in-right">
+                    <div class="flex items-start gap-4">
+                        <div class="text-5xl result-icon glow">🛒</div>
+                        <div>
+                            <div class="flex items-center mb-2">
+                                <h3 class="text-xl font-bold text-white">TechStore</h3>
+                                <div class="ml-3 text-yellow-400">⭐⭐⭐⭐⭐</div>
+                            </div>
+                            <p class="text-red-600 font-bold text-2xl mb-2">+430% en ventas online</p>
+                            <p class="text-gray-300 mb-3 italic">"Pasamos de vender localmente a tener clientes en todo el país gracias a la estrategia digital."</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">E-commerce</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Google Shopping</span>
+                                <span class="bg-red-600 bg-opacity-20 px-3 py-1 rounded-full text-sm hover-scale">Email Marketing</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <!-- Stats -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
                 <!-- Stat 1 -->
-                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale fade-in delay-300">
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale reveal-on-scroll tilt-on-hover">
                     <div class="text-center">
-                        <div class="text-6xl font-black mb-2 gradient-text" id="counter1">350%</div>
+                        <div class="text-6xl font-black mb-2 gradient-text" id="counter1">0%</div>
                         <div class="text-xl text-gray-300">ROI promedio</div>
                         <div class="mt-4 text-sm text-gray-400">Para nuestros clientes de e-commerce</div>
                     </div>
                 </div>
                 
                 <!-- Stat 2 -->
-                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale fade-in delay-400">
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale reveal-on-scroll tilt-on-hover">
                     <div class="text-center">
-                        <div class="text-6xl font-black mb-2 gradient-text" id="counter2">50+</div>
+                        <div class="text-6xl font-black mb-2 gradient-text" id="counter2">0</div>
                         <div class="text-xl text-gray-300">Clientes satisfechos</div>
                         <div class="mt-4 text-sm text-gray-400">Y creciendo cada mes</div>
                     </div>
                 </div>
                 
                 <!-- Stat 3 -->
-                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale fade-in delay-500">
+                <div class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 hover-scale reveal-on-scroll tilt-on-hover">
                     <div class="text-center">
-                        <div class="text-6xl font-black mb-2 gradient-text">24/7</div>
+                        <div class="text-6xl font-black mb-2 gradient-text" id="counter3">0</div>
                         <div class="text-xl text-gray-300">Soporte y monitoreo</div>
                         <div class="mt-4 text-sm text-gray-400">Siempre pendientes de tus campañas</div>
                     </div>
@@ -612,19 +758,19 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-red-700 to-red-900 relative overflow-hidden">
+    <section class="py-20 bg-gradient-flow relative overflow-hidden">
         <div class="absolute inset-0">
             <div class="absolute top-0 left-0 w-full h-20 bg-black opacity-10"></div>
             <div class="absolute bottom-0 right-0 w-full h-20 bg-black opacity-10"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-500 rounded-full opacity-20 blur-3xl"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red-500 rounded-full opacity-20 blur-3xl pulse"></div>
         </div>
         
         <div class="container mx-auto px-6 md:px-12 text-center relative z-10">
-            <h2 class="text-4xl md:text-5xl font-black mb-6 text-white text-shadow fade-in">¿LISTO PARA VENDER MÁS?</h2>
-            <p class="text-xl text-white mb-10 max-w-3xl mx-auto fade-in delay-100">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 text-white text-shadow reveal-on-scroll">¿LISTO PARA VENDER MÁS?</h2>
+            <p class="text-xl text-white mb-10 max-w-3xl mx-auto reveal-on-scroll">
                 No más campañas que solo gastan tu dinero. Es hora de invertir en marketing que realmente genera resultados.
             </p>
-            <a href="#contact" class="inline-block bg-black text-white font-bold py-4 px-10 rounded-full text-xl transition-all duration-300 btn-hover shadow-xl shadow-red-900/30 fade-in delay-200">
+            <a href="#contact" class="inline-block bg-black text-white font-bold py-4 px-10 rounded-full text-xl transition-all duration-300 btn-hover shadow-xl shadow-red-900/30 reveal-on-scroll magnetic-button">
                 QUIERO CRECER MI NEGOCIO <span class="bounce inline-block ml-2">🚀</span>
             </a>
         </div>
@@ -633,20 +779,20 @@
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-black relative">
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-1/3 left-1/4 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl"></div>
-            <div class="absolute bottom-1/4 right-1/3 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl"></div>
+            <div class="absolute top-1/3 left-1/4 w-64 h-64 bg-red-900 rounded-full opacity-10 blur-3xl pulse"></div>
+            <div class="absolute bottom-1/4 right-1/3 w-48 h-48 bg-pink-900 rounded-full opacity-10 blur-3xl float"></div>
         </div>
         
         <div class="container mx-auto px-6 md:px-12 relative z-10">
             <div class="flex flex-col md:flex-row gap-12">
-                <div class="md:w-1/2 fade-in">
+                <div class="md:w-1/2 reveal-on-scroll">
                     <h2 class="text-4xl md:text-5xl font-black mb-6 gradient-text text-shadow">HABLEMOS</h2>
                     <p class="text-xl text-gray-300 mb-8">
                         Cuéntanos sobre tu negocio y tus objetivos. Diseñaremos una estrategia personalizada para ti.
                     </p>
                     
                     <div class="mb-8">
-                        <div class="flex items-center mb-4 hover:translate-x-2 transition-transform duration-300">
+                        <div class="flex items-center mb-4 hover:translate-x-2 transition-transform duration-300 slide-in-left delay-100">
                             <div class="text-3xl mr-4 pulse">📍</div>
                             <div>
                                 <div class="font-bold">Ubicación</div>
@@ -654,7 +800,7 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center mb-4 hover:translate-x-2 transition-transform duration-300">
+                        <div class="flex items-center mb-4 hover:translate-x-2 transition-transform duration-300 slide-in-left delay-300">
                             <div class="text-3xl mr-4 pulse">📱</div>
                             <div>
                                 <div class="font-bold">WhatsApp</div>
@@ -662,7 +808,7 @@
                             </div>
                         </div>
                         
-                        <div class="flex items-center hover:translate-x-2 transition-transform duration-300">
+                        <div class="flex items-center hover:translate-x-2 transition-transform duration-300 slide-in-left delay-500">
                             <div class="text-3xl mr-4 pulse">📧</div>
                             <div>
                                 <div class="font-bold">Email</div>
@@ -672,22 +818,22 @@
                     </div>
                     
                     <div class="flex space-x-6">
-                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300 zoom-in delay-100">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
                             </svg>
                         </a>
-                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300 zoom-in delay-300">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
                             </svg>
                         </a>
-                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300 zoom-in delay-500">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
                             </svg>
                         </a>
-                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300">
+                        <a href="#" class="text-3xl hover:text-red-600 transition-colors transform hover:scale-125 transition-transform duration-300 zoom-in delay-700">
                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd"></path>
                             </svg>
@@ -695,24 +841,24 @@
                     </div>
                 </div>
                 
-                <div class="md:w-1/2 fade-in delay-300">
-                    <form class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20">
-                        <div class="mb-6">
+                <div class="md:w-1/2 reveal-on-scroll">
+                    <form class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl gradient-border shadow-xl shadow-red-900/20 tilt-on-hover">
+                        <div class="mb-6 slide-in-right delay-100">
                             <label for="name" class="block text-gray-300 mb-2 font-semibold">Nombre</label>
                             <input type="text" id="name" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="Tu nombre">
                         </div>
                         
-                        <div class="mb-6">
+                        <div class="mb-6 slide-in-right delay-300">
                             <label for="email" class="block text-gray-300 mb-2 font-semibold">Email</label>
                             <input type="email" id="email" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="tu@email.com">
                         </div>
                         
-                        <div class="mb-6">
+                        <div class="mb-6 slide-in-right delay-500">
                             <label for="message" class="block text-gray-300 mb-2 font-semibold">Mensaje</label>
                             <textarea id="message" rows="5" class="w-full bg-black bg-opacity-50 border border-gray-700 rounded-lg py-3 px-4 text-white focus:outline-none focus:border-red-600 transition-colors" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
                         </div>
                         
-                        <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-all duration-300 flex items-center justify-center btn-hover shadow-lg shadow-red-900/30">
+                        <button type="submit" class="w-full bg-gradient-flow text-white font-bold py-4 px-6 rounded-lg text-lg transition-all duration-300 flex items-center justify-center btn-hover shadow-lg shadow-red-900/30 slide-in-right delay-700 ripple">
                             <span>ENVIAR MENSAJE</span>
                             <span class="ml-2 bounce">✉️</span>
                         </button>
@@ -726,15 +872,15 @@
     <footer class="bg-black border-t border-red-600 py-12">
         <div class="container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-8 md:mb-0">
-                    <a href="#" class="text-3xl font-bold text-red-600 glow">
+                <div class="mb-8 md:mb-0 reveal-on-scroll">
+                    <a href="#" class="text-3xl font-bold text-red-600 glow heartbeat">
                         JUNKY<span class="text-white">AGENCY</span>
                     </a>
                     <p class="text-gray-400 mt-2">Marketing Digital que Vende</p>
                 </div>
                 
                 <div class="flex flex-col md:flex-row md:space-x-12 space-y-6 md:space-y-0 text-center md:text-left">
-                    <div>
+                    <div class="reveal-on-scroll">
                         <h4 class="text-white font-bold mb-4">Navegación</h4>
                         <ul class="space-y-2 text-gray-400">
                             <li><a href="#home" class="hover:text-red-600 transition-colors">Inicio</a></li>
@@ -745,7 +891,7 @@
                         </ul>
                     </div>
                     
-                    <div>
+                    <div class="reveal-on-scroll delay-200">
                         <h4 class="text-white font-bold mb-4">Servicios</h4>
                         <ul class="space-y-2 text-gray-400">
                             <li><a href="#" class="hover:text-red-600 transition-colors">Facebook Ads</a></li>
@@ -756,7 +902,7 @@
                         </ul>
                     </div>
                     
-                    <div>
+                    <div class="reveal-on-scroll delay-400">
                         <h4 class="text-white font-bold mb-4">Legal</h4>
                         <ul class="space-y-2 text-gray-400">
                             <li><a href="#" class="hover:text-red-600 transition-colors">Términos y Condiciones</a></li>
@@ -774,48 +920,140 @@
     </footer>
 
     <script>
-        // Testimonial Slider
+        // Create floating particles
         document.addEventListener('DOMContentLoaded', function() {
-            const slides = document.querySelectorAll('.testimonial-slide');
-            const dots = document.querySelectorAll('.testimonial-dot');
-            let currentSlide = 0;
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
             
-            function showSlide(index) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-                currentSlide = index;
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(particlesContainer);
             }
             
-            // Click event for dots
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    showSlide(index);
-                });
-            });
-            
-            // Auto slide
-            setInterval(() => {
-                let nextSlide = currentSlide + 1;
-                if (nextSlide >= slides.length) {
-                    nextSlide = 0;
-                }
-                showSlide(nextSlide);
-            }, 5000);
+            function createParticle(container) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 3px and 8px
+                const size = Math.random() * 5 + 3;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                
+                // Random color (red/pink shades)
+                const hue = Math.random() * 30 + 340; // 340-370 (red to pink)
+                const saturation = Math.random() * 30 + 70; // 70-100%
+                const lightness = Math.random() * 20 + 50; // 50-70%
+                particle.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+                
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s ease-in-out infinite`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(particle);
+            }
             
             // Scroll animation
-            const fadeElements = document.querySelectorAll('.fade-in');
+            const revealElements = document.querySelectorAll('.reveal-on-scroll');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('active');
                     }
                 });
             }, { threshold: 0.1 });
             
-            fadeElements.forEach(element => {
-                observer.obse
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Counter animation
+            function animateCounter(elementId, targetValue, unit = '', duration = 2000) {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+                
+                let startValue = 0;
+                const increment = targetValue / (duration / 16);
+                
+                const timer = setInterval(() => {
+                    startValue += increment;
+                    
+                    if (startValue >= targetValue) {
+                        clearInterval(timer);
+                        startValue = targetValue;
+                    }
+                    
+                    element.textContent = Math.floor(startValue) + unit;
+                }, 16);
+            }
+            
+            // Animate counters when they come into view
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.id === 'counter1') {
+                            animateCounter('counter1', 350, '%');
+                        } else if (entry.target.id === 'counter2') {
+                            animateCounter('counter2', 50, '+');
+                        } else if (entry.target.id === 'counter3') {
+                            animateCounter('counter3', 24, '/7');
+                        }
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('#counter1, #counter2, #counter3').forEach(counter => {
+                counterObserver.observe(counter);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Magnetic button effect
+            document.querySelectorAll('.magnetic-button').forEach(button => {
+                button.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const moveX = (x - centerX) / 10;
+                    const moveY = (y - centerY) / 10;
+                    
+                    this.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
